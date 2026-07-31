@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To My Everything ❤️</title>
+    <style>
+        :root {
+            --primary: #ff1e56;
+            --primary-hover: #e6194d;
+            --bg-color: #fff0f3;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-color: #4a0419;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffccd5, #ffe5ec, #ffb3c1);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating background hearts */
+        .heart {
+            position: fixed;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: float 6s ease-in infinite;
+            z-index: 0;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            color: #800f2f;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.5);
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            color: #a4133c;
+            font-style: italic;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Photo Gallery Grid */
+        .gallery-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #590d22;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .photo-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.4);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .photo-caption {
+            padding: 15px 5px 5px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #800f2f;
+        }
+
+        /* Interactive Note Card */
+        .message-section {
+            background: var(--card-bg);
+            padding: 45px 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(128, 15, 47, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid #ffb3c1;
+        }
+
+        .message-section h2 {
+            font-size: 2.5rem;
+            color: #800f2f;
+            margin-bottom: 20px;
+        }
+
+        .message-section p {
+            font-size: 1.25rem;
+            line-height: 1.9;
+            color: #590d22;
+            margin-bottom: 30px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .btn-surprise {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-family: 'Segoe UI', sans-serif;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 30, 86, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 30, 86, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(255, 30, 86, 0.7); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(255, 30, 86, 0.5); }
+        }
+
+        .btn-surprise:hover {
+            background-color: var(--primary-hover);
+            animation: none;
+            transform: scale(1.08);
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(to right, #ffe5ec, #fff0f3);
+            border-radius: 15px;
+            border-left: 6px solid var(--primary);
+            animation: fadeIn 1s ease-in-out forwards;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .hidden-message p {
+            margin-bottom: 15px;
+        }
+
+        .song-lyrics {
+            font-style: italic;
+            color: #a4133c;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            padding: 15px;
+            border-top: 1px dashed #ffb3c1;
+            border-bottom: 1px dashed #ffb3c1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 1rem;
+            color: #800f2f;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- THE SONG IS ADDED HERE -->
+    <audio id="loveSong" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+        <header>
+            <h1>Happy International Girlfriend Day! ❤️</h1>
+            <p>To the woman who stole my heart and made it her home.</p>
+        </header>
+
+        <h2 class="gallery-title">A Million Beautiful Memories 📸</h2>
+        
+        <div class="gallery">
+            <div class="photo-card">
+                <img src="A2.jpg" alt="Memory 1">
+                <div class="photo-caption">The smile that brightens my darkest days ✨</div>
+            </div>
+            <div class="photo-card">
+                <img src="A1.jpg" alt="Memory 2">
+                <div class="photo-caption">Every moment with you is magic 🌹</div>
+            </div>
+            <div class="photo-card">
+                <img src="A3.jpg" alt="Memory 3">
+                <div class="photo-caption">My soulmate, my best friend 🥰</div>
+            </div>
+        </div>
+
+        <section class="message-section">
+            <h2>To My One and Only 💌</h2>
+            <p>
+                From the moment you walked into my life, everything changed. You brought a melody to my quietest moments and light to my darkest days. Loving you is the easiest and most beautiful thing I have ever done. Today is about celebrating you, but I promise to cherish you every single day of my life.
+            </p>
+            <button class="btn-surprise" onclick="toggleSurprise()">Unlock My Heart (Turn Sound On) 🎵</button>
+            
+            <div class="hidden-message" id="surpriseNote">
+                <p><strong>"In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine."</strong></p>
+                
+                <div class="song-lyrics">
+                    🎶 "I have found the one whom my soul loves." 🎶<br>
+                    You are the music in my life, the rhythm in my heart.
+                </div>
+
+                <p>Thank you for being exactly who you are. I love you more than words, more than time, and more than distance.</p>
+                <p style="margin-top: 15px; font-weight: bold; font-size: 1.3rem;">Forever & Always Yours! ❤️</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>Handcrafted with endless love, just for you. ✨</p>
+        </footer>
+    </div>
+
+    <script>
+        // Interactive Surprise Toggle & Music Player
+        function toggleSurprise() {
+            const note = document.getElementById('surpriseNote');
+            const song = document.getElementById('loveSong');
+            const button = document.querySelector('.btn-surprise');
+
+            if (note.style.display === 'block') {
+                note.style.display = 'none';
+                song.pause();
+                button.innerHTML = 'Unlock My Heart (Turn Sound On) 🎵';
+            } else {
+                note.style.display = 'block';
+                
+                // Set volume to 50% for a softer, romantic feel
+                song.volume = 0.5; 
+                
+                // Play the music
+                let playPromise = song.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        console.log("Audio autoplay was prevented. The user needs to interact with the document first.");
+                    });
+                }
+                button.innerHTML = 'Close Note 💖';
+            }
+        }
+
+        // Generate dynamic floating hearts
+        function createHearts() {
+            const heartCount = 20;
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + 'vw';
+                // Varying speeds for a more natural look
+                heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                document.body.appendChild(heart);
+            }
+        }
+
+        window.onload = createHearts;
+    </script>
+</body>
+</html>
